@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
 using MediatR;
+using System.Net;
 
 namespace SafeVillage.World;
 internal class Get(IMediator mediator) : EndpointWithoutRequest<WorldDto>

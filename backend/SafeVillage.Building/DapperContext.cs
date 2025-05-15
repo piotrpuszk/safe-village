@@ -3,7 +3,7 @@ using Npgsql;
 using System.Data;
 
 namespace SafeVillage.Building;
-internal class DapperContext : IDbContext<DapperContext>
+public class DapperContext : IDbContext
 {
     private readonly IDbConnection _connection;
     private IDbTransaction? _transaction;
@@ -11,6 +11,7 @@ internal class DapperContext : IDbContext<DapperContext>
     public DapperContext(string connectionString)
     {
         _connection = new NpgsqlConnection(connectionString);
+        _connection.Open();
     }
 
     public void BeginTransaction()
@@ -47,5 +48,10 @@ internal class DapperContext : IDbContext<DapperContext>
     public Task<T> QuerySingleAsync<T>(string sql, object? parameters = null)
     {
         return _connection.QuerySingleAsync<T>(sql, parameters, transaction: _transaction);
+    }
+
+    public Task ExecuteAsync(string sql, object? parameters = null)
+    {
+        return _connection.ExecuteAsync(sql, parameters, transaction: _transaction);
     }
 }

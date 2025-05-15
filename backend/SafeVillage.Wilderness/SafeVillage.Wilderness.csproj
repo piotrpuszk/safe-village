@@ -4,7 +4,6 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj" />
     <ProjectReference Include="..\SafeVillage.World.Contracts\SafeVillage.World.Contracts.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,5 @@
 ﻿namespace SafeVillage.World;
-internal interface IDbContext<TContext> : IDisposable
+public interface IDbContext : IDisposable
 {
     void BeginTransaction();
     void Commit();
@@ -8,4 +8,5 @@ internal interface IDbContext<TContext> : IDisposable
     Task<T?> QueryFirstAsync<T>(string sql, object? parameters = null);
 
     Task<T> QuerySingleAsync<T>(string sql, object? parameters = null);
+    Task ExecuteAsync(string sql, object? parameters = null);
 }

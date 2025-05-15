@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj" />
+    <ProjectReference Include="..\SafeVillage.Village\SafeVillage.Village.csproj" />
+    <ProjectReference Include="..\SafeVillage.Wilderness\SafeVillage.Wilderness.csproj" />
     <ProjectReference Include="..\SafeVillage.World\SafeVillage.World.csproj" />
   </ItemGroup>
 

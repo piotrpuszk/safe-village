@@ -1,0 +1,57 @@
+﻿using MediatR;
+using SafeVillage.World.Contracts;
+
+namespace SafeVillage.World;
+
+internal class CreateWorldCommandHandler(
+    IMediator mediator,
+    IDbContext context,
+    IWorldRepository worldRepository) : IRequestHandler<CreateWorldCommand>
+{
+    public async Task Handle(CreateWorldCommand request, CancellationToken cancellationToken)
+    {
+        var (width, height) = request;
+
+        List<Area> areaList = [];
+        Random random = Random.Shared;
+        await mediator.Publish(new RegisterLocationTypesNotification());
+        string[] locationTypes = [.. await worldRepository.GetLocationTypesAsync()];
+        int locationSequence = 0;
+
+        for (int row = 0; row < width; ++row)
+        {
+            for (int column = 0; column < height; ++column)
+            {
+                Coordinates coordinates = new(row, column);
+                if (random.NextDouble() >= 0.5)
+                {
+                    var locationType = locationTypes[random.Next(locationTypes.Length)];
+                    var locationId = locationSequence++;
+                    Location location = Location.Create(locationId, locationType);
+                    Area area = Area.Create(coordinates, location);
+                    areaList.Add(area);
+                }
+                else
+                {
+                    Area area = Area.Create(coordinates);
+                    areaList.Add(area);
+                }
+            }
+        }
+
+        try
+        {
+            context.BeginTransaction();
+
+            World world = World.Create(1, areaList);
+            await worldRepository.AddAsync(world);
+
+            context.Commit();
+        }
+        catch
+        {
+            context.Rollback();
+            throw;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 ﻿namespace SafeVillage.Building;
 
-internal class BuildingRepository(IDbContext<DapperContext> context) : IBuildingRepository
+internal class BuildingRepository(IDbContext context) : IBuildingRepository
 {
     public Task<Building?> GetByIdAsync(int id)
     {

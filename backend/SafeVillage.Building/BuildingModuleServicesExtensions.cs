@@ -11,7 +11,7 @@ public static class BuildingModuleServicesExtensions
         List<Assembly> mediatorAssemblies)
     {
         services.AddScoped<IBuildingRepository, BuildingRepository>();
-        services.AddScoped<IDbContext<DapperContext>>(e => new DapperContext(configuration.GetConnectionString("")!));
+        //services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("building")!));
 
         mediatorAssemblies.Add(typeof(BuildingModuleServicesExtensions).Assembly);
         return services;

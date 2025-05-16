@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SafeVillage.Village.Contracts;
 using SafeVillage.World.Contracts;
 
 namespace SafeVillage.World;
@@ -16,7 +17,7 @@ internal class CreateWorldCommandHandler(
         Random random = Random.Shared;
         await mediator.Publish(new RegisterLocationTypesNotification());
         string[] locationTypes = [.. await worldRepository.GetLocationTypesAsync()];
-        int locationSequence = 0;
+        int locationId = 0;
 
         for (int row = 0; row < width; ++row)
         {
@@ -26,7 +27,15 @@ internal class CreateWorldCommandHandler(
                 if (random.NextDouble() >= 0.5)
                 {
                     var locationType = locationTypes[random.Next(locationTypes.Length)];
-                    var locationId = locationSequence++;
+                    if (locationType == "village")
+                    {
+                        var createVillageResult = await mediator.Send(new CreateVillageCommand("Test village"), cancellationToken);
+                        locationId = createVillageResult.VillageId;
+                    }
+                    else
+                    {
+                        locationId += 1000;
+                    }
                     Location location = Location.Create(locationId, locationType);
                     Area area = Area.Create(coordinates, location);
                     areaList.Add(area);

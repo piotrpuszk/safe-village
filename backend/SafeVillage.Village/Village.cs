@@ -8,24 +8,23 @@ internal class Village
     public List<Building> Buildings { get; private set; } = [];
 
     private Village(
-        int id,
+        ISequence<Village> sequence,
         string name,
         List<Building> buildings)
     {
-        Id = id;
+        Id = sequence.GetNext();
         Name = name;
         Buildings = buildings;
     }
 
     public static Village Create(
-        int id,
+        ISequence<Village> sequence,
         string name,
         IReadOnlyCollection<Building> buildings)
     {
-        id = Guard.Against.Negative(id);
         name = Guard.Against.NullOrEmpty(name);
         buildings = Guard.Against.Null(buildings);
 
-        return new(id, name, [.. buildings]);
+        return new(sequence, name, [.. buildings]);
     }
 }

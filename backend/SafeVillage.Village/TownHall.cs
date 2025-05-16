@@ -1,0 +1,44 @@
+﻿using Ardalis.GuardClauses;
+
+namespace SafeVillage.Village;
+internal class TownHall : Building, ILevelable
+{
+    public int Level { get; private set; } = _initialLevel;
+
+    private const int _splendorMultiplierBase = 5;
+    private const int _initialLevel = 1;
+    public new const string Name = "Town Hall";
+
+    public TownHall(ISequence<Building> sequence) : base(sequence, Name, 0)
+    {
+    }
+
+    public static TownHall Create(ISequence<Building> sequence)
+    {
+        sequence = Guard.Against.Null(sequence);
+
+        TownHall townHall = new(sequence);
+        townHall.UpdateSplendorPoints();
+
+        return townHall;
+    }
+
+    public static TownHall Create(DummySequence<Building> dummySequence, int level)
+    {
+        var townHall = Create(dummySequence);
+        townHall.Level = Guard.Against.NegativeOrZero(level);
+        townHall.UpdateSplendorPoints();
+        return townHall;
+    }
+
+    public void LevelUp()
+    {
+        ++Level;
+        UpdateSplendorPoints();
+    }
+
+    protected override int CalculateSplendorPoints()
+    {
+        return Level * _splendorMultiplierBase;
+    }
+}

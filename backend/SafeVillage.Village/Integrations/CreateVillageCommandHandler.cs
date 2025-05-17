@@ -5,6 +5,7 @@ using SafeVillage.Village.Contracts;
 namespace SafeVillage.Village.Integrations;
 internal class CreateVillageCommandHandler(IVillageRepository villageRepository,
     IHouseRepository houseRepository,
+    ITownHallRepository townHallRepository,
     ISequence<Building> buildingSequence,
     ISequence<Village> villageSequence) : IRequestHandler<CreateVillageCommand, CreateVillageResult>
 {
@@ -13,9 +14,10 @@ internal class CreateVillageCommandHandler(IVillageRepository villageRepository,
         House house = House.Create(buildingSequence, 5);
         Guard.Against.Expression(e => !e, await houseRepository.AddAsync(house), $"house: {house.Id} cannot be added");
 
-        var test = await houseRepository.GetAsync(house.Id);
+        TownHall townHall = TownHall.Create(buildingSequence);
+        Guard.Against.Expression(e => !e, await townHallRepository.AddAsync(townHall), $"town hall: {townHall.Id} cannot be added");
 
-        var village = Village.Create(villageSequence, request.Name, [house]);
+        var village = Village.Create(villageSequence, request.Name, [house, townHall]);
         Guard.Against.Expression(e => !e, await villageRepository.AddAsync(village), $"village: {village.Id} cannot be added");
 
         return new(village.Id);

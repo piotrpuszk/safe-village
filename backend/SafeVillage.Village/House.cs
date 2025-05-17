@@ -2,7 +2,7 @@
 using SafeVillage.Village.Exceptions;
 
 namespace SafeVillage.Village;
-internal class House : Building
+internal class House : Building, IStackable
 {
     public int Capacity { get; private set; } = _capacity;
     public int NumberOfInhabitants { get; private set; }
@@ -41,6 +41,11 @@ internal class House : Building
         var newValue = NumberOfInhabitants + value;
         NumberOfInhabitants = Guard.Against.OutOfRange(newValue, nameof(value), 0, Capacity);
         UpdateSplendorPoints();
+    }
+
+    public void Add(int value)
+    {
+        SetCount(Count + value);
     }
 
     private int CalculateSplendorPoints()

@@ -7,6 +7,7 @@ internal class Building
     public int Id { get; private set; }
     public string Name { get; private set; }
     public int SplendorPoints { get; private set; }
+    public int Count { get; private set; } = 1;
 
     public Building()
     {
@@ -33,5 +34,10 @@ internal class Building
     {
         value = Guard.Against.Negative(value);
         SplendorPoints = value;
+    }
+
+    protected void SetCount(int value)
+    {
+        Count = Guard.Against.NegativeOrZero(value);
     }
 }

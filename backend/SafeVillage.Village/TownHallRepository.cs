@@ -1,15 +1,15 @@
 ﻿namespace SafeVillage.Village;
 
-internal class HouseRepository(IDbContext context) : IHouseRepository
+internal class TownHallRepository(IDbContext context) : ITownHallRepository
 {
-    public async Task<bool> AddAsync(House house)
+    public async Task<bool> AddAsync(TownHall townHall)
     {
         var sql = """
             insert into buildings(id, name, splendor_points, count) values(@Id, @Name, @SplendorPoints, @Count);
-            insert into houses(id, capacity, number_of_inhabitants) values(@Id, @Capacity, @NumberOfInhabitants);
+            insert into town_halls(id, level) values(@Id, @Level);
             """;
 
-        var affected = await context.ExecuteAsync(sql, house);
+        var affected = await context.ExecuteAsync(sql, townHall);
 
         return affected > 0;
     }
@@ -17,7 +17,7 @@ internal class HouseRepository(IDbContext context) : IHouseRepository
     public async Task<bool> DeleteAsync(int id)
     {
         var sql = """
-            delete from houses where id = @id;
+            delete from town_halls where id = @id;
             delete from buildings where id = @id;
             """;
 
@@ -26,20 +26,19 @@ internal class HouseRepository(IDbContext context) : IHouseRepository
         return affected > 0;
     }
 
-    public async Task<House?> GetAsync(int id)
+    public async Task<TownHall?> GetAsync(int id)
     {
         var sql = """
             select b.id
                 ,name
                 ,splendor_points splendorpoints
-                ,capacity
-                ,number_of_inhabitants numberofinhabitants
+                ,level
                 ,count
             from buildings b
-                join houses h on h.id = b.id
+                join town_halls h on h.id = b.id
             where b.id = @id
             """;
 
-        return await context.QueryFirstOrDefaultAsync<House>(sql, new { id });
+        return await context.QueryFirstOrDefaultAsync<TownHall>(sql, new { id });
     }
 }

@@ -14,6 +14,7 @@ public static class VillageModuleServicesExtensions
         services.AddSingleton<ISequence<Village>, VillageIdSequence>();
         services.AddScoped<IBuildingRepository, BuildingRepository>();
         services.AddScoped<IHouseRepository, HouseRepository>();
+        services.AddScoped<ITownHallRepository, TownHallRepository>();
         services.AddScoped<IVillageRepository, VillageRepository>();
         services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("Village")!));
 

@@ -8,6 +8,7 @@ internal class BuildingRepository(IDbContext context) : IBuildingRepository
             select b.id
                 ,name
                 ,splendor_points splendorpoints
+                ,count
             from buildings b
                 join villages_buildings vb on vb.building_id = b.id
             where vb.village_id = @villageId

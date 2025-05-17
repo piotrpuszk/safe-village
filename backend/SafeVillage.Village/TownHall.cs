@@ -37,8 +37,14 @@ internal class TownHall : Building, ILevelable
         UpdateSplendorPoints();
     }
 
-    protected override int CalculateSplendorPoints()
+    private  int CalculateSplendorPoints()
     {
         return Level * _splendorMultiplierBase;
+    }
+
+    private void UpdateSplendorPoints()
+    {
+        var value = CalculateSplendorPoints();
+        SetSplendorPoints(value);
     }
 }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ardalis.GuardClauses;
+using MediatR;
 using SafeVillage.Village.Contracts;
 using SafeVillage.World.Contracts;
 
@@ -53,7 +54,7 @@ internal class CreateWorldCommandHandler(
             context.BeginTransaction();
 
             World world = World.Create(1, areaList);
-            await worldRepository.AddAsync(world);
+            Guard.Against.Expression(e => !e, await worldRepository.AddAsync(world), "failed to add a world");
 
             context.Commit();
         }

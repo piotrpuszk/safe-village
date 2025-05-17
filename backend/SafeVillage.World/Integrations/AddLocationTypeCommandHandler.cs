@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ardalis.GuardClauses;
+using MediatR;
 using SafeVillage.World.Contracts;
 
 namespace SafeVillage.World.Integrations;
@@ -6,6 +7,6 @@ internal class AddLocationTypeCommandHandler(IWorldRepository worldRepository) :
 {
     public async Task Handle(AddLocationTypeCommand request, CancellationToken cancellationToken)
     {
-        await worldRepository.AddLocationTypeAsync(request.LocationType);
+        Guard.Against.Expression(e => !e, await worldRepository.AddLocationTypeAsync(request.LocationType), $"failed to add location type: {request.LocationType}");
     }
 }

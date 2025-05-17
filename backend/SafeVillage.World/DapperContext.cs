@@ -40,7 +40,12 @@ public class DapperContext : IDbContext
         return _connection.QueryAsync<T>(sql, parameters, transaction: _transaction);
     }
 
-    public Task<T?> QueryFirstAsync<T>(string sql, object? parameters = null)
+    public Task<T> QueryFirstAsync<T>(string sql, object? parameters = null)
+    {
+        return _connection.QueryFirstAsync<T>(sql, parameters, transaction: _transaction);
+    }
+
+    public Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? parameters = null)
     {
         return _connection.QueryFirstAsync<T?>(sql, parameters, transaction: _transaction);
     }
@@ -50,8 +55,13 @@ public class DapperContext : IDbContext
         return _connection.QuerySingleAsync<T>(sql, parameters, transaction: _transaction);
     }
 
-    public Task ExecuteAsync(string sql, object? parameters = null)
+    public Task<int> ExecuteAsync(string sql, object? parameters = null)
     {
         return _connection.ExecuteAsync(sql, parameters, transaction: _transaction);
+    }
+
+    public T QueryFirst<T>(string sql, object? parameters = null)
+    {
+        return _connection.QueryFirst<T>(sql, parameters, transaction: _transaction);
     }
 }

@@ -1,16 +1,19 @@
-﻿using System.Runtime.InteropServices;
-
-namespace SafeVillage.Village;
+﻿namespace SafeVillage.Village;
 
 internal class VillageRepository(IDbContext context) : IVillageRepository
 {
-    public async Task AddAsync(Village village)
+    public async Task<bool> AddAsync(Village village)
     {
         var sql = """
             insert into villages(id, name) values(@Id, @Name)
             """;
 
-        await context.ExecuteAsync(sql, village);
+        var villagesAffected = await context.ExecuteAsync(sql, village);
+
+        if (villagesAffected == 0)
+        {
+            return false;
+        }    
 
         var villageBuildingSql = """
             insert into villages_buildings(village_id, building_id) values(@VillageId, @BuildingId)
@@ -18,21 +21,30 @@ internal class VillageRepository(IDbContext context) : IVillageRepository
 
         foreach (var building in village.Buildings)
         {
-            await context.ExecuteAsync(villageBuildingSql, new { VillageId = village.Id, BuildingId = building.Id });
+            var buildingAffected = await context.ExecuteAsync(villageBuildingSql, new { VillageId = village.Id, BuildingId = building.Id });
+
+            if (buildingAffected == 0)
+            {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var sql = """
             delete from villages where id = @id;
             delete from villages_buildings where village_id = @id
             """;
 
-        return context.ExecuteAsync(sql, new { id });
+        var affected = await context.ExecuteAsync(sql, new { id });
+
+        return affected > 0;
     }
 
-    public async Task<Village> GetAsync(int villageId, IReadOnlyCollection<Building> buildings)
+    public async Task<Village?> GetAsync(int villageId, IReadOnlyCollection<Building> buildings)
     {
         var sql = """
             select id
@@ -41,8 +53,6 @@ internal class VillageRepository(IDbContext context) : IVillageRepository
             where id = @villageId
             """;
 
-        var (id, name) = await context.QueryFirstAsync<(int id, string name)>(sql, new { villageId });
-
-        return Village.Create(new DummySequence<Village>(id), name, buildings);
+        return await context.QueryFirstOrDefaultAsync<Village>(sql, new { villageId });
     }
 }

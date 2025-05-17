@@ -1,15 +1,37 @@
-﻿namespace SafeVillage.Village;
+﻿using Ardalis.GuardClauses;
 
-internal abstract class Building(ISequence<Building> sequence, string name, int splendorPoints)
+namespace SafeVillage.Village;
+
+internal class Building
 {
-    public int Id { get; init; } = sequence.GetNext();
-    public string Name { get; init; } = name;
-    public int SplendorPoints { get; private set; } = splendorPoints;
+    public int Id { get; private set; }
+    public string Name { get; private set; }
+    public int SplendorPoints { get; private set; }
 
-    protected void UpdateSplendorPoints()
+    public Building()
     {
-        SplendorPoints = CalculateSplendorPoints();
+        
     }
 
-    protected abstract int CalculateSplendorPoints();
+    protected Building(ISequence<Building> sequence, string name, int splendorPoints)
+    {
+        Id = sequence.GetNext();
+        Name = name;
+        SplendorPoints = splendorPoints;
+    }
+
+    public static Building Create(ISequence<Building> sequence, string name, int splendorPoints)
+    {
+        sequence = Guard.Against.Null(sequence);
+        name = Guard.Against.NullOrEmpty(name);
+        splendorPoints = Guard.Against.Negative(splendorPoints);
+
+        return new(sequence, name, splendorPoints); 
+    }
+
+    protected void SetSplendorPoints(int value)
+    {
+        value = Guard.Against.Negative(value);
+        SplendorPoints = value;
+    }
 }

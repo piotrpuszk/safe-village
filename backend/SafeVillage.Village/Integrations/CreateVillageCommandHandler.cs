@@ -1,25 +1,22 @@
-﻿using MediatR;
+﻿using Ardalis.GuardClauses;
+using MediatR;
 using SafeVillage.Village.Contracts;
 
 namespace SafeVillage.Village.Integrations;
 internal class CreateVillageCommandHandler(IVillageRepository villageRepository,
-    IBuildingRepository buildingRepository,
+    IHouseRepository houseRepository,
     ISequence<Building> buildingSequence,
     ISequence<Village> villageSequence) : IRequestHandler<CreateVillageCommand, CreateVillageResult>
 {
     public async Task<CreateVillageResult> Handle(CreateVillageCommand request, CancellationToken cancellationToken)
     {
-        Building house = House.Create(buildingSequence, 5);
-        Building townHall = TownHall.Create(buildingSequence);
+        House house = House.Create(buildingSequence, 5);
+        Guard.Against.Expression(e => !e, await houseRepository.AddAsync(house), $"house: {house.Id} cannot be added");
 
-        var village = Village.Create(villageSequence, request.Name, [house, townHall]);
+        var test = await houseRepository.GetAsync(house.Id);
 
-        await villageRepository.AddAsync(village);
-
-        foreach (var building in village.Buildings)
-        {
-            await buildingRepository.AddAsync(building);
-        }
+        var village = Village.Create(villageSequence, request.Name, [house]);
+        Guard.Against.Expression(e => !e, await villageRepository.AddAsync(village), $"village: {village.Id} cannot be added");
 
         return new(village.Id);
     }

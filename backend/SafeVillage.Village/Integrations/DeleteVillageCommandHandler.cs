@@ -1,20 +1,22 @@
-﻿using MediatR;
+﻿using Ardalis.GuardClauses;
+using MediatR;
 using SafeVillage.Village.Contracts;
 
 namespace SafeVillage.Village.Integrations;
 internal class DeleteVillageCommandHandler(IVillageRepository villageRepository,
-    IBuildingRepository buildingRepository) : IRequestHandler<DeleteVillageCommand>
+    IBuildingRepository buildingRepository,
+    IHouseRepository houseRepository) : IRequestHandler<DeleteVillageCommand>
 {
     public async Task Handle(DeleteVillageCommand request, CancellationToken cancellationToken)
     {
         IReadOnlyCollection<Building> buildings = await buildingRepository.GetVillageBuildingsAsync(request.VillageId);
-        var village = await villageRepository.GetAsync(request.VillageId, buildings);
+        var village = Guard.Against.Null(await villageRepository.GetAsync(request.VillageId, buildings));
 
         foreach (var building in village.Buildings)
         {
-            await buildingRepository.DeleteAsync(building);
+            Guard.Against.Expression(e => !e, await houseRepository.DeleteAsync(building.Id), $"failed to delete building: {building.Id}");
         }
 
-        await villageRepository.DeleteAsync(village.Id);
+        Guard.Against.Expression(e => !e, await villageRepository.DeleteAsync(village.Id), $"failed to delete village: {village.Id}");
     }
 }

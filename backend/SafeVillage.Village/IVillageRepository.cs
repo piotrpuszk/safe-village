@@ -2,7 +2,7 @@
 
 internal interface IVillageRepository
 {
-    Task AddAsync(Village village);
-    Task DeleteAsync(int id);
-    Task<Village> GetAsync(int villageId, IReadOnlyCollection<Building> buildings);
+    Task<bool> AddAsync(Village village);
+    Task<bool> DeleteAsync(int id);
+    Task<Village?> GetAsync(int villageId, IReadOnlyCollection<Building> buildings);
 }

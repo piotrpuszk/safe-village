@@ -7,6 +7,11 @@ internal class Village
     public string Name { get; private set; }
     public List<Building> Buildings { get; private set; } = [];
 
+    public Village()
+    {
+        
+    }
+
     private Village(
         ISequence<Village> sequence,
         string name,

@@ -10,6 +10,11 @@ internal class House : Building
     public new const string Name = "House";
     private const int _capacity = 10;
 
+    public House()
+    {
+        
+    }
+
     private House(ISequence<Building> sequence, int numberOfInhabitants) : base(sequence, Name, 0)
     {
         NumberOfInhabitants = numberOfInhabitants;
@@ -38,8 +43,14 @@ internal class House : Building
         UpdateSplendorPoints();
     }
 
-    protected override int CalculateSplendorPoints()
+    private int CalculateSplendorPoints()
     {
         return NumberOfInhabitants;
+    }
+
+    private void UpdateSplendorPoints()
+    {
+        var value = CalculateSplendorPoints();
+        SetSplendorPoints(value);
     }
 }

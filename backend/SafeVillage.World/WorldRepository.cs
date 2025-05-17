@@ -3,7 +3,7 @@ namespace SafeVillage.World;
 
 internal class WorldRepository(IDbContext context) : IWorldRepository
 {
-    public async Task AddAsync(World world)
+    public async Task<bool> AddAsync(World world)
     {
         string insertlocationSql = """
             insert into locations(id, type) values(@id, @type)
@@ -15,36 +15,53 @@ internal class WorldRepository(IDbContext context) : IWorldRepository
             insert into worlds values(@id)
             """;
 
-        await context.ExecuteAsync(insertWorldSql, new { id = world.Id });
+        var affected = await context.ExecuteAsync(insertWorldSql, new { id = world.Id });
+
+        if (affected == 0)
+        {
+            return false;
+        }
+
         foreach (var area in world.Areas)
         {
             if (area.Location is not null)
             {
-                await context.ExecuteAsync(insertlocationSql, new { id = area.Location.Id, type = area.Location.Type });
+                affected = await context.ExecuteAsync(insertlocationSql, new { id = area.Location.Id, type = area.Location.Type });
+
+                if (affected == 0)
+                {
+                    return false;
+                }
             }
-            await context.ExecuteAsync(insertAreaSql, new { x = area.Coordinates.X, y = area.Coordinates.Y, locationId = area.Location?.Id });
+
+            affected = await context.ExecuteAsync(insertAreaSql, new { x = area.Coordinates.X, y = area.Coordinates.Y, locationId = area.Location?.Id });
+
+            if (affected == 0)
+            {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    public async Task AddLocationTypeAsync(string locationType)
+    public async Task<bool> AddLocationTypeAsync(string locationType)
     {
         var sql = """
             insert into location_types(name) values(@locationType)
             """;
 
-        await context.ExecuteAsync(sql, new { locationType });
+        return await context.ExecuteAsync(sql, new { locationType }) > 0;
     }
 
-    public Task DeleteAsync()
+    public async Task<bool> DeleteAsync()
     {
-        string sql = """
-            truncate table worlds;
-            truncate table areas;
-            truncate table locations;
-            truncate table location_types;
-            """;
+        if (await context.ExecuteAsync("""delete from worlds""") == 0) return false;
+        if (await context.ExecuteAsync("""delete from areas""") == 0) return false;
+        if (await context.ExecuteAsync("""delete from locations""") == 0) return false;
+        if (await context.ExecuteAsync("""delete from location_types""") == 0) return false;
 
-        return context.ExecuteAsync(sql);
+        return true;
     }
 
     public async Task<World> GetAsync()

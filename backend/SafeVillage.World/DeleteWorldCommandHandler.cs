@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ardalis.GuardClauses;
+using MediatR;
 using SafeVillage.Village.Contracts;
 
 namespace SafeVillage.World;
@@ -18,6 +19,6 @@ internal class DeleteWorldCommandHandler(IMediator mediator,
             }
         }
 
-        await worldRepository.DeleteAsync();
+        Guard.Against.Expression(e => !e, await worldRepository.DeleteAsync(), $"failed to delete world");
     }
 }

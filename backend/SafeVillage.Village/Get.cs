@@ -13,7 +13,7 @@ internal class Get(IMediator mediator) : Endpoint<GetRequest, GetResponse>
 
     public override async Task HandleAsync(GetRequest req, CancellationToken ct)
     {
-        GetQuery query = new(req.VillageId);
+        GetQuery query = req.Adapt<GetQuery>();
 
         var result = await mediator.Send(query, ct);
 

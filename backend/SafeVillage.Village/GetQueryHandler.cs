@@ -8,8 +8,8 @@ internal class GetQueryHandler(IVillageRepository villageRepository,
 {
     public async Task<VillageDto> Handle(GetQuery request, CancellationToken cancellationToken)
     {
-        var buildings = await buildingRepository.GetVillageBuildingsAsync(request.VillageId);
-        var village = await villageRepository.GetAsync(request.VillageId, buildings);
+        var buildings = await buildingRepository.GetVillageBuildingsAsync(request.Id);
+        var village = await villageRepository.GetAsync(request.Id, buildings);
 
         return village.Adapt<VillageDto>();
     }

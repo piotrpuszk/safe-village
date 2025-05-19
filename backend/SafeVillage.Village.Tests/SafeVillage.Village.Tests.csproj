@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SafeVillage.Bootstrapper\SafeVillage.Bootstrapper.csproj" />
     <ProjectReference Include="..\SafeVillage.Village\SafeVillage.Village.csproj" />
   </ItemGroup>
 

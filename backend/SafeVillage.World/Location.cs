@@ -5,7 +5,13 @@ internal class Location
 {
     public int Id { get; private set; }
     public string Type { get; private set; }
-    
+
+    public Location(Location location)
+    {
+        Id = location.Id;
+        Type = location.Type;
+    }
+
     private Location(int id, string type)
     {
         Id = id;

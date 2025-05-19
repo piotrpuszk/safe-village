@@ -1,6 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
 using SafeVillage.Village.Contracts;
+using SafeVillage.Wilderness.Contracts;
 using SafeVillage.World.Contracts;
 
 namespace SafeVillage.World;
@@ -25,7 +26,7 @@ internal class CreateWorldCommandHandler(
             for (int column = 0; column < height; ++column)
             {
                 Coordinates coordinates = new(row, column);
-                if (random.NextDouble() >= 0.5)
+                if (random.NextDouble() >= 0.25)
                 {
                     var locationType = locationTypes[random.Next(locationTypes.Length)];
                     if (locationType == "village")
@@ -33,9 +34,14 @@ internal class CreateWorldCommandHandler(
                         var createVillageResult = await mediator.Send(new CreateVillageCommand("Test village"), cancellationToken);
                         locationId = createVillageResult.VillageId;
                     }
+                    else if (locationType == "wilderness")
+                    {
+                        var createWildernessResult = await mediator.Send(new CreateWildernessCommand(), cancellationToken);
+                        locationId = createWildernessResult.WildernessId;
+                    }
                     else
                     {
-                        locationId += 1000;
+                        throw new Exception($"location missing: {locationType}");
                     }
                     Location location = Location.Create(locationId, locationType);
                     Area area = Area.Create(coordinates, location);

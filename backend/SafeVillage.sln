@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.Wilderness", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.Village.Contracts", "SafeVillage.Village.Contracts\SafeVillage.Village.Contracts.csproj", "{A088589C-DA5D-4824-AC6B-BD7A3B465B03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.Wilderness.Contracts", "SafeVillage.Wilderness.Contracts\SafeVillage.Wilderness.Contracts.csproj", "{EFEBE051-9590-46EA-A9B4-694569B3E00B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{A088589C-DA5D-4824-AC6B-BD7A3B465B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A088589C-DA5D-4824-AC6B-BD7A3B465B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A088589C-DA5D-4824-AC6B-BD7A3B465B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEBE051-9590-46EA-A9B4-694569B3E00B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEBE051-9590-46EA-A9B4-694569B3E00B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEBE051-9590-46EA-A9B4-694569B3E00B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEBE051-9590-46EA-A9B4-694569B3E00B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{C0A51F1E-1814-4931-ACA1-4B986429D083} = {E23E3B1F-C46E-4385-9E41-CDD87208754F}
 		{61B6ABDF-996D-4F8F-9FF4-4660EBEF0EE7} = {C0A51F1E-1814-4931-ACA1-4B986429D083}
 		{A088589C-DA5D-4824-AC6B-BD7A3B465B03} = {F8B7D402-DFA6-42EF-B01A-C655C0E5C85F}
+		{EFEBE051-9590-46EA-A9B4-694569B3E00B} = {C0A51F1E-1814-4931-ACA1-4B986429D083}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3074DA26-5C61-4C8A-953C-6AE02B08959A}

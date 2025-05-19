@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj" />
     <ProjectReference Include="..\SafeVillage.Village.Contracts\SafeVillage.Village.Contracts.csproj" />
+    <ProjectReference Include="..\SafeVillage.Wilderness.Contracts\SafeVillage.Wilderness.Contracts.csproj" />
     <ProjectReference Include="..\SafeVillage.World.Contracts\SafeVillage.World.Contracts.csproj" />
   </ItemGroup>
 

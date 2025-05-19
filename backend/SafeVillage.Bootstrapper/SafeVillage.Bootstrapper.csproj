@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj" />
-    <ProjectReference Include="..\SafeVillage.Village\SafeVillage.Village.csproj" />
-    <ProjectReference Include="..\SafeVillage.Wilderness\SafeVillage.Wilderness.csproj" />
-    <ProjectReference Include="..\SafeVillage.World\SafeVillage.World.csproj" />
+    <ProjectReference Include="..\SafeVillage.VillageModule\SafeVillage.VillageModule.csproj" />
+    <ProjectReference Include="..\SafeVillage.WildernessModule\SafeVillage.WildernessModule.csproj" />
+    <ProjectReference Include="..\SafeVillage.WorldModule\SafeVillage.WorldModule.csproj" />
   </ItemGroup>
 
 </Project>

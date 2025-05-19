@@ -10,8 +10,8 @@ public static class VillageModuleServicesExtensions
         IConfiguration configuration,
         List<Assembly> mediatorAssemblies)
     {
-        services.AddSingleton<ISequence<Building>, BuildingIdSequence>();
-        services.AddSingleton<ISequence<Village>, VillageIdSequence>();
+        services.AddScoped<ISequence<Building>, BuildingIdSequence>();
+        services.AddScoped<ISequence<Village>, VillageIdSequence>();
         services.AddScoped<IBuildingRepository, BuildingRepository>();
         services.AddScoped<IHouseRepository, HouseRepository>();
         services.AddScoped<ITownHallRepository, TownHallRepository>();

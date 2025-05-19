@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.Bootstrapper", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "World Module", "World Module", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule", "SafeVillage.World\SafeVillage.WorldModule.csproj", "{20E714D2-F8B3-4305-A957-7D0CD2899969}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule", "SafeVillage.WorldModule\SafeVillage.WorldModule.csproj", "{20E714D2-F8B3-4305-A957-7D0CD2899969}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,27 +16,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Village Module", "Village Module", "{F8B7D402-DFA6-42EF-B01A-C655C0E5C85F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageModule", "SafeVillage.Village\SafeVillage.VillageModule.csproj", "{2B1527D5-18A1-45B3-9212-D97A1A2A1775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageModule", "SafeVillage.VillageModule\SafeVillage.VillageModule.csproj", "{2B1527D5-18A1-45B3-9212-D97A1A2A1775}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Locations Modules", "Locations Modules", "{E23E3B1F-C46E-4385-9E41-CDD87208754F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule.Tests", "SafeVillage.World.Tests\SafeVillage.WorldModule.Tests.csproj", "{A47BA107-E604-45DF-9357-EBA7C89482F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule.Tests", "SafeVillage.WorldModule.Tests\SafeVillage.WorldModule.Tests.csproj", "{A47BA107-E604-45DF-9357-EBA7C89482F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.SharedKernel", "SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj", "{44EBDE98-E8EF-4485-BFAA-763BB7654950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule.Contracts", "SafeVillage.World.Contracts\SafeVillage.WorldModule.Contracts.csproj", "{C6F1D487-5BA2-4645-853B-35D9F79EAEFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WorldModule.Contracts", "SafeVillage.WorldModule.Contracts\SafeVillage.WorldModule.Contracts.csproj", "{C6F1D487-5BA2-4645-853B-35D9F79EAEFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wilderness Module", "Wilderness Module", "{C0A51F1E-1814-4931-ACA1-4B986429D083}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule", "SafeVillage.Wilderness\SafeVillage.WildernessModule.csproj", "{61B6ABDF-996D-4F8F-9FF4-4660EBEF0EE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule", "SafeVillage.WildernessModule\SafeVillage.WildernessModule.csproj", "{61B6ABDF-996D-4F8F-9FF4-4660EBEF0EE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageContracts.Contracts", "SafeVillage.Village.Contracts\SafeVillage.VillageContracts.Contracts.csproj", "{A088589C-DA5D-4824-AC6B-BD7A3B465B03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageModule.Contracts", "SafeVillage.VillageModule.Contracts\SafeVillage.VillageModule.Contracts.csproj", "{A088589C-DA5D-4824-AC6B-BD7A3B465B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule.Contracts", "SafeVillage.Wilderness.Contracts\SafeVillage.WildernessModule.Contracts.csproj", "{EFEBE051-9590-46EA-A9B4-694569B3E00B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule.Contracts", "SafeVillage.WildernessModule.Contracts\SafeVillage.WildernessModule.Contracts.csproj", "{EFEBE051-9590-46EA-A9B4-694569B3E00B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule.Tests", "SafeVillage.Wilderness.Tests\SafeVillage.WildernessModule.Tests.csproj", "{67D52EE1-77DA-4EBD-85F7-94D3062DF7EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.WildernessModule.Tests", "SafeVillage.WildernessModule.Tests\SafeVillage.WildernessModule.Tests.csproj", "{67D52EE1-77DA-4EBD-85F7-94D3062DF7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageModule.Tests", "SafeVillage.Village.Tests\SafeVillage.VillageModule.Tests.csproj", "{DE85525B-DB5B-43D0-B335-10660A35E80B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeVillage.VillageModule.Tests", "SafeVillage.VillageModule.Tests\SafeVillage.VillageModule.Tests.csproj", "{DE85525B-DB5B-43D0-B335-10660A35E80B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

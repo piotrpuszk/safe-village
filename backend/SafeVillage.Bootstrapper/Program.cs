@@ -1,8 +1,8 @@
 using FastEndpoints;
 using SafeVillage.SharedKernel;
-using SafeVillage.Village;
-using SafeVillage.Wilderness;
-using SafeVillage.World;
+using SafeVillage.VillageModule;
+using SafeVillage.WildernessModule;
+using SafeVillage.WorldModule;
 using Serilog;
 using Serilog.Templates;
 using Serilog.Templates.Themes;

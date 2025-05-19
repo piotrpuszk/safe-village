@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
+using SafeVillage.World.Endpoints;
 
 namespace SafeVillage.World.Tests.Endpoints;
 public class MyApp : AppFixture<Program>
@@ -12,7 +13,7 @@ public class MyApp : AppFixture<Program>
 
     protected override async ValueTask TearDownAsync()
     {
-        await Client.DELETEAsync<SafeVillage.World.Delete, HttpResponseMessage>();
+        await Client.DELETEAsync<Delete, HttpResponseMessage>();
         Client.Dispose();
         await base.TearDownAsync();
     }

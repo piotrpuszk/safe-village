@@ -1,4 +1,6 @@
-﻿namespace SafeVillage.World.Tests;
+﻿using SafeVillage.World.Domain;
+
+namespace SafeVillage.World.Tests;
 public class WorldTests
 {
     [Fact]
@@ -7,7 +9,7 @@ public class WorldTests
         var invalidId = -1;
         List<Area> validAreas = [];
 
-        Assert.ThrowsAny<Exception>(() => World.Create(invalidId, validAreas));
+        Assert.ThrowsAny<Exception>(() => Domain.World.Create(invalidId, validAreas));
     }
 
     [Fact]
@@ -16,7 +18,7 @@ public class WorldTests
         var validId = 1;
         List<Area> invalidAreas = null!;
 
-        Assert.ThrowsAny<Exception>(() => World.Create(validId, invalidAreas));
+        Assert.ThrowsAny<Exception>(() => Domain.World.Create(validId, invalidAreas));
     }
 
     [Fact]
@@ -25,7 +27,7 @@ public class WorldTests
         var validId = 1;
         List<Area> validAreas = [];
 
-        var result = World.Create(validId, validAreas);
+        var result = Domain.World.Create(validId, validAreas);
     }
 
     [Fact]
@@ -34,7 +36,7 @@ public class WorldTests
         var validId = 1;
         List<Area> validAreas = [];
 
-        var result = World.Create(validId, validAreas);
+        var result = Domain.World.Create(validId, validAreas);
 
         Assert.NotNull(result);
     }
@@ -45,7 +47,7 @@ public class WorldTests
         var validId = 1;
         List<Area> validAreas = [];
 
-        var result = World.Create(validId, validAreas);
+        var result = Domain.World.Create(validId, validAreas);
 
         Assert.Equal(validId, result.Id);
     }
@@ -60,7 +62,7 @@ public class WorldTests
                 area,
             ];
 
-        var world = World.Create(validId, validAreas);
+        var world = Domain.World.Create(validId, validAreas);
         var actual = world.Areas[0];
 
         Assert.NotNull(area);

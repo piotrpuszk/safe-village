@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("SafeVillage.Village.Tests")]
+[assembly: InternalsVisibleTo("SafeVillage.VillageModule.Tests")]
 
 namespace SafeVillage.Village;
 internal class AssemblyInfo

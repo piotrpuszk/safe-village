@@ -1,4 +1,6 @@
-﻿namespace SafeVillage.World.Tests;
+﻿using SafeVillage.World.Domain;
+
+namespace SafeVillage.World.Tests;
 public class LocationTests
 {
     [Fact]

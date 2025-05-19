@@ -1,5 +1,7 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
+using SafeVillage.World.Dtos;
+using SafeVillage.World.Endpoints;
 using System.Net;
 
 namespace SafeVillage.World.Tests.Endpoints;

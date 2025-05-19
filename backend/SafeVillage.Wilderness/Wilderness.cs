@@ -11,9 +11,9 @@ internal class Wilderness
 
     }
 
-    private Wilderness(ISequence<Wilderness> sequence, int inhabitPoints)
+    private Wilderness(int id, int inhabitPoints)
     {
-        Id = sequence.GetNext();
+        Id = id;
         InhabitPoints = inhabitPoints;
     }
 
@@ -21,7 +21,8 @@ internal class Wilderness
     {
         sequence = Guard.Against.Null(sequence);
         inhabitPoints = Guard.Against.NegativeOrZero(inhabitPoints);
+        var id = Guard.Against.Negative(sequence.GetNext());
 
-        return new(sequence, inhabitPoints);
+        return new(id, inhabitPoints);
     }
 }

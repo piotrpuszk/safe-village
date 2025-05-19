@@ -13,11 +13,11 @@ internal class Village
     }
 
     private Village(
-        ISequence<Village> sequence,
+        int id,
         string name,
         List<Building> buildings)
     {
-        Id = sequence.GetNext();
+        Id = id;
         Name = name;
         Buildings = buildings;
     }
@@ -29,7 +29,10 @@ internal class Village
     {
         name = Guard.Against.NullOrEmpty(name);
         buildings = Guard.Against.Null(buildings);
+        sequence = Guard.Against.Null(sequence);
+        var id = Guard.Against.Negative(sequence.GetNext());
+        var buildingsDeepCopy = buildings.Select(e => new Building(e)).ToList().AsReadOnly();
 
-        return new(sequence, name, [.. buildings]);
+        return new(id, name, [.. buildingsDeepCopy]);
     }
 }

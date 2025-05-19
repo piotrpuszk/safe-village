@@ -6,6 +6,12 @@ internal class Area
     public Coordinates Coordinates { get; private set; }
     public Location? Location { get; set; }
 
+    public Area(Area area)
+    {
+        Coordinates = area.Coordinates;
+        Location = area.Location is not null ? new Location(area.Location) : null;
+    }
+
     private Area(Coordinates coordinates)
     {
         Coordinates = coordinates;
@@ -20,7 +26,7 @@ internal class Area
     {
         coordinates = Guard.Against.Null(coordinates);
 
-        return new(coordinates);
+        return new(coordinates with { });
     }
 
     public static Area Create(Coordinates coordinates, Location location)
@@ -28,6 +34,6 @@ internal class Area
         coordinates = Guard.Against.Null(coordinates);
         location = Guard.Against.Null(location);
 
-        return new(coordinates, location);
+        return new(coordinates with { }, new(location));
     }
 }

@@ -18,6 +18,8 @@ internal class World
         worldId = Guard.Against.Negative(worldId);
         areas = Guard.Against.Null(areas);
 
-        return new(worldId, [.. areas]);
+        var areasDeepCopy = areas.Select(e => new Area(e)).ToList().AsReadOnly();
+
+        return new(worldId, [.. areasDeepCopy]);
     }
 }

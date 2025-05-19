@@ -9,25 +9,18 @@ internal class TownHall : Building, ILevelable
     private const int _initialLevel = 1;
     public new const string Name = "Town Hall";
 
-    public TownHall(ISequence<Building> sequence) : base(sequence, Name, 0)
+    public TownHall(int id) : base(id, Name, 0)
     {
     }
 
     public static TownHall Create(ISequence<Building> sequence)
     {
         sequence = Guard.Against.Null(sequence);
+        var id = Guard.Against.Negative(sequence.GetNext());
 
-        TownHall townHall = new(sequence);
+        TownHall townHall = new(id);
         townHall.UpdateSplendorPoints();
 
-        return townHall;
-    }
-
-    public static TownHall Create(DummySequence<Building> dummySequence, int level)
-    {
-        var townHall = Create(dummySequence);
-        townHall.Level = Guard.Against.NegativeOrZero(level);
-        townHall.UpdateSplendorPoints();
         return townHall;
     }
 

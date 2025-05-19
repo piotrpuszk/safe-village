@@ -15,7 +15,7 @@ internal class House : Building, IStackable
         
     }
 
-    private House(ISequence<Building> sequence, int numberOfInhabitants) : base(sequence, Name, 0)
+    private House(int id, int numberOfInhabitants) : base(id, Name, 0)
     {
         NumberOfInhabitants = numberOfInhabitants;
     }
@@ -24,13 +24,14 @@ internal class House : Building, IStackable
     {
         numberOfInhabitants = Guard.Against.Negative(numberOfInhabitants);
         sequence = Guard.Against.Null(sequence);
+        var id = Guard.Against.Negative(sequence.GetNext());
 
         if (numberOfInhabitants > _capacity)
         {
             throw new NumberOfInhabitantsIsGreaterThanHouseCapacityException(Name, _capacity, numberOfInhabitants);
         }
 
-        House house = new(sequence, numberOfInhabitants);
+        House house = new(id, numberOfInhabitants);
         house.UpdateSplendorPoints();
 
         return house;
@@ -38,6 +39,7 @@ internal class House : Building, IStackable
 
     public void IncreaseNumberOfInhabitants(int value)
     {
+        value = Guard.Against.NegativeOrZero(value);
         var newValue = NumberOfInhabitants + value;
         NumberOfInhabitants = Guard.Against.OutOfRange(newValue, nameof(value), 0, Capacity);
         UpdateSplendorPoints();
@@ -45,6 +47,7 @@ internal class House : Building, IStackable
 
     public void Add(int value)
     {
+        value = Guard.Against.NegativeOrZero(value);
         SetCount(Count + value);
     }
 

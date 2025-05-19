@@ -14,9 +14,17 @@ internal class Building
         
     }
 
-    protected Building(ISequence<Building> sequence, string name, int splendorPoints)
+    public Building(Building building)
     {
-        Id = sequence.GetNext();
+        Id = building.Id;
+        Name = building.Name;
+        SplendorPoints = building.SplendorPoints;
+        Count = building.Count;
+    }
+
+    protected Building(int id, string name, int splendorPoints)
+    {
+        Id = id;
         Name = name;
         SplendorPoints = splendorPoints;
     }
@@ -26,8 +34,9 @@ internal class Building
         sequence = Guard.Against.Null(sequence);
         name = Guard.Against.NullOrEmpty(name);
         splendorPoints = Guard.Against.Negative(splendorPoints);
+        var id = Guard.Against.Negative(sequence.GetNext());
 
-        return new(sequence, name, splendorPoints); 
+        return new(id, name, splendorPoints); 
     }
 
     protected void SetSplendorPoints(int value)

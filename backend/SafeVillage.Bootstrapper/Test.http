@@ -1,4 +1,15 @@
 @url=http://localhost:5000
 
+POST {{url}}/api/world
+Accept: application/json
+Content-Type: application/json
+
+{
+    "width": 10,
+    "height": 20
+}
+
+###
+
 GET {{url}}/api/world
 Accept: application/json

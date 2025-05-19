@@ -12,7 +12,7 @@ public static class WildernessModuleServicesExtensions
     {
         services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("Wilderness")!));
         services.AddScoped<IWildernessRepository, WildernessRepository>();
-        services.AddSingleton<ISequence<Wilderness>, WildernessSequence>();
+        services.AddScoped<ISequence<Wilderness>, WildernessSequence>();
 
         mediatorAssemblies.Add(typeof(WildernessModuleServicesExtensions).Assembly);
 

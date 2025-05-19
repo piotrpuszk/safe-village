@@ -1,6 +1,8 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
-using SafeVillage.WildernessModule.Endpoints;
+using SafeVillage.WildernessModule.Endpoints.CreateEndpoint;
+using SafeVillage.WildernessModule.Endpoints.DeleteEndpoint;
+using SafeVillage.WildernessModule.Endpoints.GetEndpoint;
 using System.Net;
 
 namespace SafeVillage.WildernessModule.Tests.Endpoints;

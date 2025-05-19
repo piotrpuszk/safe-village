@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SafeVillage.VillageModule.DataAccess;
+using SafeVillage.VillageModule.Domain;
+using SafeVillage.VillageModule.Interfaces;
 using System.Reflection;
 
 namespace SafeVillage.VillageModule;

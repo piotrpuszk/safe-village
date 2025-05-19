@@ -1,6 +1,8 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
 using SafeVillage.VillageModule.Contracts;
+using SafeVillage.VillageModule.Domain;
+using SafeVillage.VillageModule.Interfaces;
 
 namespace SafeVillage.VillageModule.Integrations;
 internal class CreateVillageCommandHandler(IVillageRepository villageRepository,

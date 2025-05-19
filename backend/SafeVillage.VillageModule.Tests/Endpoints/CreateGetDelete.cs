@@ -1,5 +1,8 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
+using SafeVillage.VillageModule.Endpoints.CreateEndpoint;
+using SafeVillage.VillageModule.Endpoints.DeleteEndpoint;
+using SafeVillage.VillageModule.Endpoints.GetEndpoint;
 using System.Net;
 
 namespace SafeVillage.VillageModule.Tests.Endpoints;

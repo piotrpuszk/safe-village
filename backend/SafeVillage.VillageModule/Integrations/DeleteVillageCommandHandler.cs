@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SafeVillage.VillageModule.Contracts;
+using SafeVillage.VillageModule.UseCases.Delete;
 
 namespace SafeVillage.VillageModule.Integrations;
 internal class DeleteVillageCommandHandler(IMediator mediator) : IRequestHandler<DeleteVillageCommand>

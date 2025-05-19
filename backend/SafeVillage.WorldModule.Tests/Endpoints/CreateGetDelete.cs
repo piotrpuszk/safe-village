@@ -1,7 +1,9 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
 using SafeVillage.WorldModule.Dtos;
-using SafeVillage.WorldModule.Endpoints;
+using SafeVillage.WorldModule.Endpoints.CreateEndpoint;
+using SafeVillage.WorldModule.Endpoints.DeleteEndpoint;
+using SafeVillage.WorldModule.Endpoints.GetEndpoint;
 using System.Net;
 
 namespace SafeVillage.WorldModule.Tests.Endpoints;

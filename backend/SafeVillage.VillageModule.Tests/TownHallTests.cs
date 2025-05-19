@@ -1,4 +1,7 @@
-﻿namespace SafeVillage.VillageModule.Tests;
+﻿using SafeVillage.VillageModule.Domain;
+using SafeVillage.VillageModule.Interfaces;
+
+namespace SafeVillage.VillageModule.Tests;
 public class TownHallTests
 {
     [Fact]

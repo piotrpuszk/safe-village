@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
-using SafeVillage.WorldModule.Endpoints;
+using SafeVillage.WorldModule.Endpoints.DeleteEndpoint;
 
 namespace SafeVillage.WorldModule.Tests.Endpoints;
 public class MyApp : AppFixture<Program>

@@ -2,7 +2,7 @@
 using Npgsql;
 using System.Data;
 
-namespace SafeVillage.World;
+namespace SafeVillage.Village;
 public class DapperContext : IDbContext
 {
     private readonly IDbConnection _connection;

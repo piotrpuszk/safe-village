@@ -1,6 +1,7 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace SafeVillage.World.Tests.Endpoints;
 public class CreateGetDelete(MyApp app) : TestBase<MyApp>
@@ -22,6 +23,9 @@ public class CreateGetDelete(MyApp app) : TestBase<MyApp>
         Assert.NotNull(getResponse?.Result?.Areas);
         Assert.NotEmpty(getResponse.Result.Areas);
         Assert.Equal(width * height, getResponse.Result.Areas.Count);
+        var containsVillage = getResponse.Result.Areas.Select(e => e.Location?.Type).Contains("village");
+        var containsWilderness = getResponse.Result.Areas.Select(e => e.Location?.Type).Contains("wilderness");
+        Assert.True(containsWilderness || containsVillage);
 
         var deleteResponse = await app.Client.DELETEAsync<SafeVillage.World.Delete, object?>();
 

@@ -1,4 +1,4 @@
-﻿namespace SafeVillage.World;
+﻿namespace SafeVillage.Village;
 public interface IDbContext : IDisposable
 {
     void BeginTransaction();

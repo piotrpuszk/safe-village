@@ -11,7 +11,7 @@ public static class WorldModuleServicesExtensions
         List<Assembly> mediatrAssemblies)
     {
         services.AddScoped<IWorldRepository, WorldRepository>();
-        services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("world")!));
+        services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("World")!));
 
 
         mediatrAssemblies.Add(typeof(WorldModuleServicesExtensions).Assembly);

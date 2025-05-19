@@ -1,9 +1,9 @@
 ﻿namespace SafeVillage.World;
 internal interface IWorldRepository
 {
-    Task AddAsync(World world);
-    Task AddLocationTypeAsync(string locationType);
-    Task DeleteAsync();
+    Task<bool> AddAsync(World world);
+    Task<bool> AddLocationTypeAsync(string locationType);
+    Task<bool> DeleteAsync();
     Task<World> GetAsync();
     Task<IReadOnlyCollection<string>> GetLocationTypesAsync();
 }

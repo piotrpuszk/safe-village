@@ -10,6 +10,14 @@ public static class VillageModuleServicesExtensions
         IConfiguration configuration,
         List<Assembly> mediatorAssemblies)
     {
+        services.AddSingleton<ISequence<Building>, BuildingIdSequence>();
+        services.AddSingleton<ISequence<Village>, VillageIdSequence>();
+        services.AddScoped<IBuildingRepository, BuildingRepository>();
+        services.AddScoped<IHouseRepository, HouseRepository>();
+        services.AddScoped<ITownHallRepository, TownHallRepository>();
+        services.AddScoped<IVillageRepository, VillageRepository>();
+        services.AddScoped<IDbContext>(e => new DapperContext(configuration.GetConnectionString("Village")!));
+
         mediatorAssemblies.Add(typeof(VillageModuleServicesExtensions).Assembly);
 
         return services;

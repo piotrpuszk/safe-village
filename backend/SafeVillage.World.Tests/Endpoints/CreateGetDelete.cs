@@ -1,7 +1,6 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace SafeVillage.World.Tests.Endpoints;
 public class CreateGetDelete(MyApp app) : TestBase<MyApp>
@@ -13,11 +12,11 @@ public class CreateGetDelete(MyApp app) : TestBase<MyApp>
     [InlineData(2, 3)]
     public async Task WhenCreateWorldSucceeded_ReturnWorldSuccessfully(int width, int height)
     {
-        var createResponse = await app.Client.POSTAsync<SafeVillage.World.Create, CreateRequest>(new CreateRequest(width, height));
+        var createResponse = await app.Client.POSTAsync<Create, CreateRequest>(new CreateRequest(width, height));
 
         Assert.Equal(HttpStatusCode.NoContent, createResponse.StatusCode);
 
-        var getResponse = await app.Client.GETAsync<SafeVillage.World.Get, WorldDto>();
+        var getResponse = await app.Client.GETAsync<Get, WorldDto>();
 
         Assert.Equal(HttpStatusCode.OK, getResponse.Response.StatusCode);
         Assert.NotNull(getResponse?.Result?.Areas);
@@ -27,7 +26,7 @@ public class CreateGetDelete(MyApp app) : TestBase<MyApp>
         var containsWilderness = getResponse.Result.Areas.Select(e => e.Location?.Type).Contains("wilderness");
         Assert.True(containsWilderness || containsVillage);
 
-        var deleteResponse = await app.Client.DELETEAsync<SafeVillage.World.Delete, object?>();
+        var deleteResponse = await app.Client.DELETEAsync<Delete, object?>();
 
         Assert.Equal(HttpStatusCode.NoContent, deleteResponse.Response.StatusCode);
     }

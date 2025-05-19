@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SafeVillage.WildernessModule.DataAccess;
+using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
 using System.Reflection;
 
 namespace SafeVillage.WildernessModule;

@@ -1,7 +1,8 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
+using SafeVillage.WildernessModule.Interfaces;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.UseCases;
 
 internal class DeleteCommandHandler(IWildernessRepository wildernessRepository)
     : IRequestHandler<DeleteCommand>

@@ -1,4 +1,7 @@
-﻿namespace SafeVillage.WildernessModule;
+﻿using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
+
+namespace SafeVillage.WildernessModule.DataAccess;
 
 internal class WildernessRepository(IDbContext context) : IWildernessRepository
 {

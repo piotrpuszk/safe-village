@@ -1,4 +1,4 @@
-﻿namespace SafeVillage.WildernessModule;
+﻿namespace SafeVillage.WildernessModule.Interfaces;
 public interface IDbContext : IDisposable
 {
     void BeginTransaction();

@@ -1,4 +1,7 @@
-﻿namespace SafeVillage.WildernessModule.Tests;
+﻿using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
+
+namespace SafeVillage.WildernessModule.Tests;
 
 public class WildernessSequence(int id) : ISequence<Wilderness>
 {

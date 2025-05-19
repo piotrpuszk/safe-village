@@ -1,7 +1,9 @@
 ﻿using Mapster;
 using MediatR;
+using SafeVillage.WildernessModule.Dtos;
+using SafeVillage.WildernessModule.Interfaces;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.UseCases;
 
 internal class GetQueryHandler(IWildernessRepository wildernessRepository) : IRequestHandler<GetQuery, WildernessDto>
 {

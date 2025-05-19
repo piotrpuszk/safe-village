@@ -1,8 +1,9 @@
 ﻿using FastEndpoints;
 using Mapster;
 using MediatR;
+using SafeVillage.WildernessModule.UseCases;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.Endpoints;
 internal class Create(IMediator mediator) : Endpoint<CreateRequest>
 {
     public override void Configure()

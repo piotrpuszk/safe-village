@@ -1,4 +1,7 @@
-﻿namespace SafeVillage.WildernessModule;
+﻿using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
+
+namespace SafeVillage.WildernessModule.DataAccess;
 internal class WildernessSequence(IDbContext context) : ISequence<Wilderness>
 {
     public int GetNext()

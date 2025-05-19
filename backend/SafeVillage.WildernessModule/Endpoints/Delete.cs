@@ -1,8 +1,9 @@
 ﻿using FastEndpoints;
 using Mapster;
 using MediatR;
+using SafeVillage.WildernessModule.UseCases;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.Endpoints;
 
 internal class Delete(IMediator mediator) : Endpoint<DeleteRequest>
 {

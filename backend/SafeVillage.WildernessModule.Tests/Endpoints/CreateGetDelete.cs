@@ -1,5 +1,6 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Testing;
+using SafeVillage.WildernessModule.Endpoints;
 using System.Net;
 
 namespace SafeVillage.WildernessModule.Tests.Endpoints;

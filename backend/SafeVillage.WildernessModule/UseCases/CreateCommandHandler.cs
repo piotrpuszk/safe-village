@@ -1,7 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
+using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.UseCases;
 
 internal class CreateCommandHandler(IWildernessRepository wildernessRepository,
     ISequence<Wilderness> sequence) : IRequestHandler<CreateCommand, CreateResult>

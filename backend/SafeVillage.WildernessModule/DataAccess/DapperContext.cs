@@ -1,8 +1,9 @@
 ﻿using Dapper;
 using Npgsql;
+using SafeVillage.WildernessModule.Interfaces;
 using System.Data;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.DataAccess;
 public class DapperContext : IDbContext
 {
     private readonly IDbConnection _connection;

@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
 using SafeVillage.WorldModule.Contracts;
-using SafeVillage.WorldModule.Domain;
+using SafeVillage.WorldModule.Interfaces;
 
 namespace SafeVillage.WorldModule.Integrations;
 internal class AddLocationTypeCommandHandler(IWorldRepository worldRepository) : IRequestHandler<AddLocationTypeCommand>

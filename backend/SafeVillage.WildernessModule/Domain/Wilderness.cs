@@ -1,6 +1,7 @@
 ﻿using Ardalis.GuardClauses;
+using SafeVillage.WildernessModule.Interfaces;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.Domain;
 internal class Wilderness
 {
     public int Id { get; private set; }

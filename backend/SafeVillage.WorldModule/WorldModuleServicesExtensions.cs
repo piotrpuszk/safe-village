@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SafeVillage.WorldModule.DataAccess;
-using SafeVillage.WorldModule.Domain;
 using SafeVillage.WorldModule.Interfaces;
 using System.Reflection;
 

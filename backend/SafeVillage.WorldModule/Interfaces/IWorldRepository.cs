@@ -1,4 +1,6 @@
-﻿namespace SafeVillage.WorldModule.Domain;
+﻿using SafeVillage.WorldModule.Domain;
+
+namespace SafeVillage.WorldModule.Interfaces;
 internal interface IWorldRepository
 {
     Task<bool> AddAsync(World world);

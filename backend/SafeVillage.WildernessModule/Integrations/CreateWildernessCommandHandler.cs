@@ -1,6 +1,8 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
 using SafeVillage.WildernessModule.Contracts;
+using SafeVillage.WildernessModule.Domain;
+using SafeVillage.WildernessModule.Interfaces;
 
 namespace SafeVillage.WildernessModule.Integrations;
 internal class CreateWildernessCommandHandler(

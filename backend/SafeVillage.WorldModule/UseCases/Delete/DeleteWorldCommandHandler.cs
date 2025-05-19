@@ -2,7 +2,7 @@
 using MediatR;
 using SafeVillage.VillageModule.Contracts;
 using SafeVillage.WildernessModule.Contracts;
-using SafeVillage.WorldModule.Domain;
+using SafeVillage.WorldModule.Interfaces;
 
 namespace SafeVillage.WorldModule.UseCases.Delete;
 

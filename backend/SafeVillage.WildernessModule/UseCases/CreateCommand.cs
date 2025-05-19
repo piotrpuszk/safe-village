@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace SafeVillage.WildernessModule;
+namespace SafeVillage.WildernessModule.UseCases;
 
 internal record CreateCommand(int InhabitPoints) : IRequest<CreateResult>;

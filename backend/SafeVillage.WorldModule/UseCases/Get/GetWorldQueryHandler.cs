@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using MediatR;
-using SafeVillage.WorldModule.Domain;
 using SafeVillage.WorldModule.Dtos;
+using SafeVillage.WorldModule.Interfaces;
 
 namespace SafeVillage.WorldModule.UseCases.Get;
 internal class GetWorldQueryHandler(IWorldRepository worldRepository) : IRequestHandler<GetWorldQuery, GetWorldResult>

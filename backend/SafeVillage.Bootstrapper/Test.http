@@ -13,3 +13,34 @@ Content-Type: application/json
 
 GET {{url}}/api/world
 Accept: application/json
+
+
+###
+
+@token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJURVNUIiwibmJmIjoxNzQ4MDkyOTgxLCJleHAiOjE3NDgxNzkzODEsImlhdCI6MTc0ODA5Mjk4MX0.NIgs5Nj906QEzZJa_seXhHPTx_fRDjeB9oywfre4ITBXds1OkF8O7ireqCmuL3JdQ-etX_Am-mcRNe0OZMY9OQ
+
+GET {{url}}/api/users/logged-user
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+POST {{url}}/api/users/sign-up
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "test"
+}
+
+###
+
+POST {{url}}/api/users/sign-in
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "test"
+}

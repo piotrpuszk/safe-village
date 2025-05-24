@@ -7,6 +7,10 @@ using Serilog;
 using Serilog.Templates;
 using Serilog.Templates.Themes;
 using System.Reflection;
+using SafeVillage.UserModule;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -31,16 +35,31 @@ List<Assembly> mediatorAssemblies = [typeof(Program).Assembly];
 builder.Services.AddWorldModuleServices(builder.Configuration, mediatorAssemblies);
 builder.Services.AddVillageModuleServices(builder.Configuration, mediatorAssemblies);
 builder.Services.AddWildernessModuleServices(builder.Configuration, mediatorAssemblies);
+builder.Services.AddUserModuleServices(builder.Configuration, mediatorAssemblies);
 
 builder.Services.AddMediatR(e => e.RegisterServicesFromAssemblies([.. mediatorAssemblies]));
 builder.Services.AddHandlerLoggingBehavior();
 
 builder.Services.AddFastEndpoints();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(e =>
+    {
+        var tokenKey = builder.Configuration["TokenKey"];
+        e.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseDefaultExceptionHandler();
 app.UseFastEndpoints();

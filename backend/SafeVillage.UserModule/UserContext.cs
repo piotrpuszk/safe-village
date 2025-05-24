@@ -12,5 +12,9 @@ internal class UserContext(DbContextOptions<UserContext> options) : DbContext(op
 
         modelBuilder.Entity<AppRole>()
             .HasKey(e => e.Name);
+
+        modelBuilder.Entity<AppUser>()
+            .HasIndex(e => e.Username)
+            .IsUnique();
     }
 }

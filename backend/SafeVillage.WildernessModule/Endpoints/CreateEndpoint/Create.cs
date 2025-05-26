@@ -10,7 +10,6 @@ internal class Create(IMediator mediator) : Endpoint<CreateRequest>
     public override void Configure()
     {
         Post($"/api/{Constants.LocationType}/" + "{id}");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(CreateRequest req, CancellationToken ct)

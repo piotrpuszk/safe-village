@@ -5,6 +5,7 @@ using SafeVillage.WorldModule.Endpoints.CreateEndpoint;
 using SafeVillage.WorldModule.Endpoints.DeleteEndpoint;
 using SafeVillage.WorldModule.Endpoints.GetEndpoint;
 using System.Net;
+using System.Text.Json;
 
 namespace SafeVillage.WorldModule.Tests.Endpoints;
 public class CreateGetDelete(MyApp app) : TestBase<MyApp>
@@ -16,6 +17,10 @@ public class CreateGetDelete(MyApp app) : TestBase<MyApp>
     [InlineData(2, 3)]
     public async Task WhenCreateWorldSucceeded_ReturnWorldSuccessfully(int width, int height)
     {
+        var token = await GetToken();
+
+        app.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
         var createResponse = await app.Client.POSTAsync<Create, CreateRequest>(new CreateRequest(width, height));
 
         Assert.Equal(HttpStatusCode.NoContent, createResponse.StatusCode);
@@ -34,4 +39,26 @@ public class CreateGetDelete(MyApp app) : TestBase<MyApp>
 
         Assert.Equal(HttpStatusCode.NoContent, deleteResponse.Response.StatusCode);
     }
+
+    private async Task<string> GetToken()
+    {
+        var baseAddress = app.Client.BaseAddress;
+
+        var username = Guid.NewGuid().ToString();
+        var password = Guid.NewGuid().ToString();
+        
+        var signUpRequest = new {Username = username, Password = password};
+        var signUpResponse = await app.Client.POSTAsync<object, object>("/api/users/sign-up", signUpRequest);
+        signUpResponse.Response.EnsureSuccessStatusCode();
+
+        var signInRequest = new {username, password};
+        var signInResponse = await app.Client.POSTAsync<object, SignInResponse>("/api/users/sign-in", signInRequest);
+        signInResponse.Response.EnsureSuccessStatusCode();
+
+        string token = signInResponse.Result.Token;
+
+        return token;
+    }
+    
+    private class SignInResponse { public string Token { get; set; } = string.Empty; }
 }

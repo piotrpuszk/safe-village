@@ -9,7 +9,6 @@ internal class Delete(IMediator mediator) : Endpoint<DeleteRequest>
     public override void Configure()
     {
         Delete($"/api/{Constants.LocationType}/" + "{id}");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(DeleteRequest req, CancellationToken ct)

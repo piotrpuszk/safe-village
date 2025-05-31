@@ -6,6 +6,7 @@ using SafeVillage.WildernessModule.Endpoints.GetEndpoint;
 using System.Net;
 
 namespace SafeVillage.WildernessModule.Tests.Endpoints;
+[Collection("Sequential")]
 public class CreateGetDelete(MyApp app) : TestBase<MyApp>
 {
     [Fact]

@@ -1,7 +1,5 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
-using SafeVillage.VillageModule.Contracts;
-using SafeVillage.WildernessModule.Contracts;
 using SafeVillage.WorldModule.Contracts;
 using SafeVillage.WorldModule.Domain;
 using SafeVillage.WorldModule.Interfaces;
@@ -15,45 +13,16 @@ internal class CreateWorldCommandHandler(
 {
     public async Task Handle(CreateWorldCommand request, CancellationToken cancellationToken)
     {
-        var (width, height) = request;
-
         List<Area> areaList = [];
-        Random random = Random.Shared;
-        await mediator.Publish(new RegisterLocationTypesNotification());
-        string[] locationTypes = [.. await worldRepository.GetLocationTypesAsync()];
-        int locationId = 0;
+        await mediator.Publish(new RegisterLocationTypesNotification(), cancellationToken);
 
-        for (int row = 0; row < width; ++row)
+        for (int row = 0; row < request.Width; ++row)
         {
-            for (int column = 0; column < height; ++column)
+            for (int column = 0; column < request.Height; ++column)
             {
                 Coordinates coordinates = new(row, column);
-                if (random.NextDouble() >= 0.25)
-                {
-                    var locationType = locationTypes[random.Next(locationTypes.Length)];
-                    if (locationType == "village")
-                    {
-                        var createVillageResult = await mediator.Send(new CreateVillageCommand("Test village"), cancellationToken);
-                        locationId = createVillageResult.VillageId;
-                    }
-                    else if (locationType == "wilderness")
-                    {
-                        var createWildernessResult = await mediator.Send(new CreateWildernessCommand(), cancellationToken);
-                        locationId = createWildernessResult.WildernessId;
-                    }
-                    else
-                    {
-                        throw new Exception($"location missing: {locationType}");
-                    }
-                    Location location = Location.Create(locationId, locationType);
-                    Area area = Area.Create(coordinates, location);
-                    areaList.Add(area);
-                }
-                else
-                {
-                    Area area = Area.Create(coordinates);
-                    areaList.Add(area);
-                }
+                Area area = Area.Create(coordinates);
+                areaList.Add(area);
             }
         }
 
@@ -61,7 +30,7 @@ internal class CreateWorldCommandHandler(
         {
             context.BeginTransaction();
 
-            Domain.World world = Domain.World.Create(1, areaList);
+            World world = World.Create(1, areaList);
             Guard.Against.Expression(e => !e, await worldRepository.AddAsync(world), "failed to add a world");
 
             context.Commit();

@@ -1,6 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using MediatR;
 using SafeVillage.VillageModule.Contracts;
+using SafeVillage.WaterModule.Contracts;
 using SafeVillage.WildernessModule.Contracts;
 using SafeVillage.WorldModule.Interfaces;
 
@@ -22,6 +23,10 @@ internal class DeleteWorldCommandHandler(IMediator mediator,
             if (location?.Type == "wilderness")
             {
                 await mediator.Send(new DeleteWildernessCommand(location.Id), cancellationToken);
+            }
+            if (location?.Type == "water")
+            {
+                await mediator.Send(new DeleteWaterCommand(location.Id), cancellationToken);
             }
         }
 

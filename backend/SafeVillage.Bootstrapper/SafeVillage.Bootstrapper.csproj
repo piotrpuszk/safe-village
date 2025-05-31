@@ -18,7 +18,9 @@
     <ProjectReference Include="..\SafeVillage.SharedKernel\SafeVillage.SharedKernel.csproj" />
     <ProjectReference Include="..\SafeVillage.UserModule\SafeVillage.UserModule.csproj" />
     <ProjectReference Include="..\SafeVillage.VillageModule\SafeVillage.VillageModule.csproj" />
+    <ProjectReference Include="..\SafeVillage.WaterModule\SafeVillage.WaterModule.csproj" />
     <ProjectReference Include="..\SafeVillage.WildernessModule\SafeVillage.WildernessModule.csproj" />
+    <ProjectReference Include="..\SafeVillage.WorldGeneratorModule\SafeVillage.WorldGeneratorModule.csproj" />
     <ProjectReference Include="..\SafeVillage.WorldModule\SafeVillage.WorldModule.csproj" />
   </ItemGroup>
 

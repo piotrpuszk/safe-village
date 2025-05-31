@@ -60,7 +60,6 @@ internal class WorldRepository(IDbContext context) : IWorldRepository
     {
         if (await context.ExecuteAsync("""delete from worlds""") == 0) return false;
         if (await context.ExecuteAsync("""delete from areas""") == 0) return false;
-        if (await context.ExecuteAsync("""delete from locations""") == 0) return false;
         if (await context.ExecuteAsync("""delete from location_types""") == 0) return false;
 
         return true;

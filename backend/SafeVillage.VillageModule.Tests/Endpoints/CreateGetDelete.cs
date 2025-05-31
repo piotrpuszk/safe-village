@@ -6,6 +6,7 @@ using SafeVillage.VillageModule.Endpoints.GetEndpoint;
 using System.Net;
 
 namespace SafeVillage.VillageModule.Tests.Endpoints;
+[Collection("Sequential")]
 public class CreateGetDelete(MyApp app) : TestBase<MyApp>
 {
     [Fact]

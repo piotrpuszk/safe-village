@@ -11,6 +11,8 @@ using SafeVillage.UserModule;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using SafeVillage.WorldGeneratorModule;
+using SafeVillage.WaterModule;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -26,15 +28,18 @@ builder.Services.AddSerilog((services, lc) => lc
         .ReadFrom.Services(services)
         .Enrich.FromLogContext()
         .WriteTo.Console(new ExpressionTemplate(
-            // Include trace and span ids when present.
             "[{@t:HH:mm:ss} {@l:u3}{#if @tr is not null} ({substring(@tr,0,4)}:{substring(@sp,0,4)}){#end}] {@m}\n{@x}",
             theme: TemplateTheme.Code)));
 
 List<Assembly> mediatorAssemblies = [typeof(Program).Assembly];
 
 builder.Services.AddWorldModuleServices(builder.Configuration, mediatorAssemblies);
+builder.Services.AddWorldGeneratorModuleServices(builder.Configuration, mediatorAssemblies);
+
 builder.Services.AddVillageModuleServices(builder.Configuration, mediatorAssemblies);
 builder.Services.AddWildernessModuleServices(builder.Configuration, mediatorAssemblies);
+builder.Services.AddWaterModuleServices(builder.Configuration, mediatorAssemblies);
+
 builder.Services.AddUserModuleServices(builder.Configuration, mediatorAssemblies);
 
 builder.Services.AddMediatR(e => e.RegisterServicesFromAssemblies([.. mediatorAssemblies]));

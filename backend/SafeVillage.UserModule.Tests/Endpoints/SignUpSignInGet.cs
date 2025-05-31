@@ -4,6 +4,7 @@ using SafeVillage.UserModule.Endpoints;
 using System.Net;
 
 namespace SafeVillage.UserModule.Tests.Endpoints;
+[Collection("Sequential")]
 public class SignUpSignInGet(MyApp app) : TestBase<MyApp>
 {
     [Fact]
